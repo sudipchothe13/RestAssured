@@ -1,0 +1,23 @@
+{
+  "createCompany": {
+    "companies": [
+      {
+        "name": "Apple",
+        "products": ["iPhone", "iPad"],
+        "headquarters": "Cupertino",
+        "country": "USA"
+      }
+    ]
+  },
+
+  "updateCompany": {
+    "companies": [
+      {
+        "name": "Samsung",
+        "products": ["Galaxy S24"],
+        "headquarters": "Seoul",
+        "country": "Korea"
+      }
+    ]
+  }
+}

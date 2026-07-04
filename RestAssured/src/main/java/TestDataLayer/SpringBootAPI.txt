@@ -1,0 +1,190 @@
+package com.practice.springbootpractice;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+public class GenericController {
+
+    private Map<String, Object> companyData = new HashMap<>();
+    private Map<String, Object> studentData = new HashMap<>();
+    private Map<String, Object> employeeData = new HashMap<>();
+    private Map<String, Object> customerData = new HashMap<>();
+    private Map<String, Object> accountData = new HashMap<>();
+
+    @GetMapping("/")
+    public String home() {
+        return "Spring Boot Application Working";
+    }
+
+    // ================= COMPANY =================
+
+    @PostMapping("/companies")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Map<String, Object> saveCompany(
+            @RequestParam(required = false) String country,
+            @RequestBody Map<String, Object> request) {
+
+        if (country != null) {
+            request.put("country", country);
+        }
+
+        companyData = request;
+        return companyData;
+    }
+
+    @GetMapping("/companies")
+    @ResponseStatus(HttpStatus.OK)
+    public Map<String, Object> getCompany() {
+
+        return companyData;
+    }
+
+    // ================= STUDENT =================
+
+    @PostMapping("/student")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Map<String, Object> saveStudent(
+            @RequestParam(required = false) String country,
+            @RequestBody Map<String, Object> request) {
+
+        if (country != null) {
+            request.put("country", country);
+        }
+
+        studentData = request;
+        return studentData;
+    }
+
+    @GetMapping("/student")
+    @ResponseStatus(HttpStatus.OK)
+    public Map<String, Object> getStudent() {
+
+        return studentData;
+    }
+
+    // ================= EMPLOYEE =================
+
+    @PostMapping("/employee")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Map<String, Object> saveEmployee(
+            @RequestParam(required = false) String country,
+            @RequestBody Map<String, Object> request) {
+
+        if (country != null) {
+            request.put("country", country);
+        }
+
+        employeeData = request;
+        return employeeData;
+    }
+
+    @GetMapping("/employee")
+    @ResponseStatus(HttpStatus.OK)
+    public Map<String, Object> getEmployee() {
+
+        return employeeData;
+    }
+
+    // ================= CUSTOMER =================
+
+    @PostMapping("/customer")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Map<String, Object> saveCustomer(
+            @RequestParam(required = false) String country,
+            @RequestBody Map<String, Object> request) {
+
+        if (country != null) {
+            request.put("country", country);
+        }
+
+        customerData = request;
+        return customerData;
+    }
+
+    @GetMapping("/customer")
+    @ResponseStatus(HttpStatus.OK)
+    public Map<String, Object> getCustomer() {
+
+        return customerData;
+    }
+
+    // ================= ACCOUNT =================
+
+    @PostMapping("/account")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Map<String, Object> saveAccount(
+            @RequestParam(required = false) String country,
+            @RequestBody Map<String, Object> request) {
+
+        if (country != null) {
+            request.put("country", country);
+        }
+
+        accountData = request;
+        return accountData;
+    }
+
+    @GetMapping("/account")
+    @ResponseStatus(HttpStatus.OK)
+    public Map<String, Object> getAccount() {
+
+        return accountData;
+    }
+
+    // ================= GENERIC =================
+
+    @PostMapping("/{entity}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Map<String, Object> saveData(
+            @PathVariable String entity,
+            @RequestParam(required = false) String country,
+            @RequestBody Map<String, Object> request) {
+
+        request.put("entityType", entity);
+
+        if (country != null) {
+            request.put("country", country);
+        }
+
+        return request;
+    }
+
+    @GetMapping("/{entity}")
+    @ResponseStatus(HttpStatus.OK)
+    public Map<String, Object> getData(
+            @PathVariable String entity,
+            @RequestParam(required = false) String country) {
+
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("entityType", entity);
+
+        if (country != null) {
+            response.put("country", country);
+        }
+
+        return response;
+    }
+}
+
+==========================================================
+package com.practice.springbootpractice;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringbootpracticeApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringbootpracticeApplication.class, args);
+	}
+
+}
+==========================================================
+spring.application.name=springbootpractice
+server.port=9090

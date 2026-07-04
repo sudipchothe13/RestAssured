@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss} %-5p [Automation Testing] [%X{browser}] %m%n
+        </Property>
+    </Properties>
+
+    <Appenders>
+
+        <!-- ROUTING APPENDER -->
+        <Routing name="BrowserRouting">
+            <Routes pattern="$${ctx:browser}">
+
+                <Route key="Default">
+                    <RollingFile
+                        name="DefaultFile"
+                        fileName="Logs/Default.log"
+                        filePattern="Logs/Default-%d{yyyy-MM-dd}.log">
+                        <PatternLayout pattern="${LOG_PATTERN}" />
+                        <Policies>
+                            <TimeBasedTriggeringPolicy />
+                        </Policies>
+                    </RollingFile>
+                </Route>
+
+                <Route key="Chrome">
+                    <RollingFile
+                        name="ChromeFile"
+                        fileName="Logs/Chrome.log"
+                        filePattern="Logs/Chrome-%d{yyyy-MM-dd}.log">
+                        <PatternLayout pattern="${LOG_PATTERN}" />
+                        <Policies>
+                            <TimeBasedTriggeringPolicy />
+                        </Policies>
+                    </RollingFile>
+                </Route>
+
+                <Route key="Firefox">
+                    <RollingFile
+                        name="FirefoxFile"
+                        fileName="Logs/Firefox.log"
+                        filePattern="Logs/Firefox-%d{yyyy-MM-dd}.log">
+                        <PatternLayout pattern="${LOG_PATTERN}" />
+                        <Policies>
+                            <TimeBasedTriggeringPolicy />
+                        </Policies>
+                    </RollingFile>
+                </Route>
+
+                <Route key="Edge">
+                    <RollingFile
+                        name="EdgeFile"
+                        fileName="Logs/Edge.log"
+                        filePattern="Logs/Edge-%d{yyyy-MM-dd}.log">
+                        <PatternLayout pattern="${LOG_PATTERN}" />
+                        <Policies>
+                            <TimeBasedTriggeringPolicy />
+                        </Policies>
+                    </RollingFile>
+                </Route>
+
+                <Route key="REST">
+                    <RollingFile
+                        name="RestFile"
+                        fileName="Logs/RestAssured.log"
+                        filePattern="Logs/RestAssured-%d{yyyy-MM-dd}.log">
+                        <PatternLayout pattern="${LOG_PATTERN}" />
+                        <Policies>
+                            <TimeBasedTriggeringPolicy />
+                        </Policies>
+                    </RollingFile>
+                </Route>
+
+            </Routes>
+        </Routing>
+
+    </Appenders>
+
+    <Loggers>
+        <!-- Silence everything else -->
+        <Logger name="org.openqa.selenium" level="off" additivity="false"/>
+        <Logger name="org.apache.http" level="off" additivity="false"/>
+        <Logger name="freemarker" level="off" additivity="false"/>
+        <Logger name="io.cucumber" level="off" additivity="false"/>
+        <Logger name="com.aventstack" level="off" additivity="false"/>
+        <Logger name="org.testng" level="off" additivity="false"/>
+
+        <!-- Your framework logs -->
+        <Root level="info">
+            <AppenderRef ref="BrowserRouting"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

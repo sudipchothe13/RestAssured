@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-07-01T12:40:16 IST" name="Default suite" finished-at="2026-07-01T12:40:17 IST" duration-ms="459">
+    <groups>
+    </groups>
+    <test started-at="2026-07-01T12:40:16 IST" name="Default test" finished-at="2026-07-01T12:40:17 IST" duration-ms="459">
+      <class name="TestLayer.SyntaxForInterview">
+        <test-method signature="readExternalJson_PostCall()[pri:0, instance:TestLayer.SyntaxForInterview@2e377400]" started-at="2026-07-01T12:40:16 IST" name="readExternalJson_PostCall" finished-at="2026-07-01T12:40:17 IST" duration-ms="447" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readExternalJson_PostCall -->
+      </class> <!-- TestLayer.SyntaxForInterview -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
