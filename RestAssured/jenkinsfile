@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'BRANCH', defaultValue: 'main')
+        string(name: 'TAG', defaultValue: 'Regression')
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: "${params.BRANCH}",
+                    url: 'https://github.com/sudipchothe13/RestAssured.git'
+            }
+        }
+
+        stage('Build & Test') {
+            steps {
+                sh "/opt/homebrew/bin/mvn clean test -Dgroups=${params.TAG}"
+            }
+        }
+    }
+}
