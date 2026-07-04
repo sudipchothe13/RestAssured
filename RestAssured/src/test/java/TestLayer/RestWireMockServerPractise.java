@@ -65,7 +65,7 @@ public class RestWireMockServerPractise{
         server.stop();
     }
 
-    @Test
+    @Test (groups ="Regression")
     public void postCallUsingWireMockServer() {
 
         RestAssured.baseURI = "http://localhost:3000";
