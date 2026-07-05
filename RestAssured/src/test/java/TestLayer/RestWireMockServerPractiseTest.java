@@ -16,7 +16,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-public class RestWireMockServerPractise {
+public class RestWireMockServerPractiseTest {
 
 	WireMockServer server;
 	String payload;
