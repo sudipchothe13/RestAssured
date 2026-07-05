@@ -3,11 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestLayer.SyntaxForInterview">
+      <class name="Selenium_Practise.LaunchBrowser_syntax">
         <methods>
-          <include name="postCall"/>
+          <include name="launchApp"/>
+          <include name="tearDown"/>
         </methods>
-      </class> <!-- TestLayer.SyntaxForInterview -->
+      </class> <!-- Selenium_Practise.LaunchBrowser_syntax -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

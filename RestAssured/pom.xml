@@ -294,6 +294,20 @@
         </plugin>
 				<!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.3.0</version>
+    <configuration>
+        <groups>${groups}</groups>
+        <includes>
+            <include>**/*Test.java</include>
+            <include>**/Test*.java</include>
+            <include>**/*Tests.java</include>
+            <include>**/*TestCase.java</include>
+        </includes>
+    </configuration>
+</plugin>
+        
+        <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.3.1</version>
         </plugin>
@@ -301,16 +315,7 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.13.0</version>
         </plugin>
-        <plugin>
-    <artifactId>maven-surefire-plugin</artifactId>
-    <version>3.3.0</version>
-    <configuration>
-        <groups>${groups}</groups>
-        <includes>
-            <include>**/*Runner.java</include>
-        </includes>
-    </configuration>
-</plugin>
+        
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.4.2</version>

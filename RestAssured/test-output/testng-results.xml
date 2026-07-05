@@ -2,16 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-07-01T12:40:16 IST" name="Default suite" finished-at="2026-07-01T12:40:17 IST" duration-ms="459">
+  <suite started-at="2026-07-05T09:46:01 IST" name="Default suite" finished-at="2026-07-05T09:46:46 IST" duration-ms="44797">
     <groups>
     </groups>
-    <test started-at="2026-07-01T12:40:16 IST" name="Default test" finished-at="2026-07-01T12:40:17 IST" duration-ms="459">
-      <class name="TestLayer.SyntaxForInterview">
-        <test-method signature="readExternalJson_PostCall()[pri:0, instance:TestLayer.SyntaxForInterview@2e377400]" started-at="2026-07-01T12:40:16 IST" name="readExternalJson_PostCall" finished-at="2026-07-01T12:40:17 IST" duration-ms="447" status="PASS">
+    <test started-at="2026-07-05T09:46:01 IST" name="Default test" finished-at="2026-07-05T09:46:46 IST" duration-ms="44797">
+      <class name="Selenium_Practise.HandleDynamicTables">
+        <test-method signature="launchApp()[pri:0, instance:Selenium_Practise.HandleDynamicTables@445b295b]" started-at="2026-07-05T09:46:01 IST" name="launchApp" finished-at="2026-07-05T09:46:26 IST" duration-ms="24585" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- readExternalJson_PostCall -->
-      </class> <!-- TestLayer.SyntaxForInterview -->
+        </test-method> <!-- launchApp -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:Selenium_Practise.HandleDynamicTables@445b295b]" started-at="2026-07-05T09:46:26 IST" name="tearDown" finished-at="2026-07-05T09:46:46 IST" duration-ms="20201" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- Selenium_Practise.HandleDynamicTables -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

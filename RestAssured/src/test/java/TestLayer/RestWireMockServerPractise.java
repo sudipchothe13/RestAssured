@@ -16,113 +16,92 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-public class RestWireMockServerPractise{
+public class RestWireMockServerPractise {
 
-    WireMockServer server;
-    String payload;
-    
-    @BeforeMethod
-    public void setup() {
+	WireMockServer server;
+	String payload;
 
-        server = new WireMockServer(3000);
-        server.start();
+	@BeforeMethod
+	public void setup() {
 
-        payload =
-                "{\n" +
-                "  \"id\": 101,\n" +
-                "  \"firstName\": \"Sudip\",\n" +
-                "  \"lastName\": \"Chothe\",\n" +
-                "  \"email\": \"sudip.chothe@gmail.com\",\n" +
-                "  \"mobile\": \"98765843210\",\n" +
-                "  \"department\": \"QA Automation\",\n" +
-                "  \"salary\": 85000,\n" +
-                "  \"city\": \"Mumbai\",\n" +
-                "  \"status\": \"Employee Created Successfully\",\n" +
-                "  \"createdAt\": \"2026-05-19T10:45:30\"\n" +
-                "}";
+		server = new WireMockServer(3000);
+		server.start();
 
-        server.stubFor(
-                post(urlEqualTo("/employees"))
-                        .willReturn(
-                                aResponse()
-                                        .withStatus(201)
-                                        .withHeader("Content-Type", "application/json")
-                                        .withBody(payload)));
-    
+		payload = "{\n" + "  \"id\": 101,\n" + "  \"firstName\": \"Sudip\",\n" + "  \"lastName\": \"Chothe\",\n"
+				+ "  \"email\": \"sudip.chothe@gmail.com\",\n" + "  \"mobile\": \"98765843210\",\n"
+				+ "  \"department\": \"QA Automation\",\n" + "  \"salary\": 85000,\n" + "  \"city\": \"Mumbai\",\n"
+				+ "  \"status\": \"Employee Created Successfully\",\n" + "  \"createdAt\": \"2026-05-19T10:45:30\"\n"
+				+ "}";
 
-        // GET
-        server.stubFor(
-                get(urlEqualTo("/employees/3030"))
-                        .willReturn(
-                                aResponse()
-                                        .withStatus(200)
-                                        .withHeader("Content-Type", "application/json")
-                                        .withBody(payload)));
-    }
+		server.stubFor(post(urlEqualTo("/employees")).willReturn(
+				aResponse().withStatus(201).withHeader("Content-Type", "application/json").withBody(payload)));
 
-    @AfterMethod
-    public void tearDown() {
-        server.stop();
-    }
+		// GET
+		server.stubFor(get(urlEqualTo("/employees/3030")).willReturn(
+				aResponse().withStatus(200).withHeader("Content-Type", "application/json").withBody(payload)));
+	}
 
-    @Test (groups ="Regression")
-    public void postCallUsingWireMockServer() {
+	@AfterMethod
+	public void tearDown() {
+		server.stop();
+	}
 
-        RestAssured.baseURI = "http://localhost:3000";
-        RequestSpecification httpRequest = RestAssured.given();
-        httpRequest.header("Content-Type", "application/json");
+	@Test(groups = "Regression")
+	public void postCallUsingWireMockServer() {
 
-        
-        //----payload passed via WireMockServer-------
-        httpRequest.body(payload);
+		RestAssured.baseURI = "http://localhost:3000";
+		RequestSpecification httpRequest = RestAssured.given();
+		httpRequest.header("Content-Type", "application/json");
 
-        
-        Response response = httpRequest.post("/employees");
+		// ----payload passed via WireMockServer-------
+		httpRequest.body(payload);
 
-        response.prettyPrint();
+		Response response = httpRequest.post("/employees");
 
-        Assert.assertEquals(response.getStatusCode(), 201);
-        Assert.assertTrue(response.getStatusLine().contains("201"));
-        Assert.assertTrue(response.getTime() < 3000);
-        Assert.assertEquals(response.getContentType(), "application/json");
+		response.prettyPrint();
 
-        Assert.assertEquals(response.jsonPath().getInt("id"), 101);
-        Assert.assertEquals(response.jsonPath().getString("firstName"), "Sudip");
-        Assert.assertEquals(response.jsonPath().getString("lastName"), "Chothe");
-        Assert.assertEquals(response.jsonPath().getString("email"), "sudip.chothe@gmail.com");
-        Assert.assertEquals(response.jsonPath().getString("mobile"), "98765843210");
-        Assert.assertEquals(response.jsonPath().getString("department"), "QA Automation");
-        Assert.assertEquals(response.jsonPath().getInt("salary"), 85000);
-        Assert.assertEquals(response.jsonPath().getString("city"), "Mumbai");
-        Assert.assertEquals(response.jsonPath().getString("status"), "Employee Created Successfully");
-    }
+		Assert.assertEquals(response.getStatusCode(), 201);
+		Assert.assertTrue(response.getStatusLine().contains("201"));
+		Assert.assertTrue(response.getTime() < 3000);
+		Assert.assertEquals(response.getContentType(), "application/json");
 
-    @Test
-    public void getCallUsingWireMockServer() {
+		Assert.assertEquals(response.jsonPath().getInt("id"), 101);
+		Assert.assertEquals(response.jsonPath().getString("firstName"), "Sudip");
+		Assert.assertEquals(response.jsonPath().getString("lastName"), "Chothe");
+		Assert.assertEquals(response.jsonPath().getString("email"), "sudip.chothe@gmail.com");
+		Assert.assertEquals(response.jsonPath().getString("mobile"), "98765843210");
+		Assert.assertEquals(response.jsonPath().getString("department"), "QA Automation");
+		Assert.assertEquals(response.jsonPath().getInt("salary"), 85000);
+		Assert.assertEquals(response.jsonPath().getString("city"), "Mumbai");
+		Assert.assertEquals(response.jsonPath().getString("status"), "Employee Created Successfully");
+	}
 
-        RestAssured.baseURI = "http://localhost:3000";
+	@Test(groups = "Regression")
+	public void getCallUsingWireMockServer() {
 
-        RequestSpecification httpRequest = RestAssured.given();
+		RestAssured.baseURI = "http://localhost:3000";
 
-        httpRequest.header("Content-Type", "application/json");
+		RequestSpecification httpRequest = RestAssured.given();
 
-        Response response = httpRequest.get("/employees/3030");
+		httpRequest.header("Content-Type", "application/json");
 
-        response.prettyPrint();
+		Response response = httpRequest.get("/employees/3030");
 
-        Assert.assertEquals(response.getStatusCode(), 200);
-        Assert.assertTrue(response.getStatusLine().contains("200"));
-        Assert.assertTrue(response.getTime() < 3000);
-        Assert.assertEquals(response.getContentType(), "application/json");
+		response.prettyPrint();
 
-        Assert.assertEquals(response.jsonPath().getInt("id"), 101);
-        Assert.assertEquals(response.jsonPath().getString("firstName"), "Sudip");
-        Assert.assertEquals(response.jsonPath().getString("lastName"), "Chothe");
-        Assert.assertEquals(response.jsonPath().getString("email"), "sudip.chothe@gmail.com");
-        Assert.assertEquals(response.jsonPath().getString("mobile"), "9876543210");
-        Assert.assertEquals(response.jsonPath().getString("department"), "QA Automation");
-        Assert.assertEquals(response.jsonPath().getInt("salary"), 85000);
-        Assert.assertEquals(response.jsonPath().getString("city"), "Mumbai");
-        Assert.assertEquals(response.jsonPath().getString("status"), "Employee Created Successfully");
-    }
+		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertTrue(response.getStatusLine().contains("200"));
+		Assert.assertTrue(response.getTime() < 3000);
+		Assert.assertEquals(response.getContentType(), "application/json");
+
+		Assert.assertEquals(response.jsonPath().getInt("id"), 101);
+		Assert.assertEquals(response.jsonPath().getString("firstName"), "Sudip");
+		Assert.assertEquals(response.jsonPath().getString("lastName"), "Chothe");
+		Assert.assertEquals(response.jsonPath().getString("email"), "sudip.chothe@gmail.com");
+		Assert.assertEquals(response.jsonPath().getString("mobile"), "9876543210");
+		Assert.assertEquals(response.jsonPath().getString("department"), "QA Automation");
+		Assert.assertEquals(response.jsonPath().getInt("salary"), 85000);
+		Assert.assertEquals(response.jsonPath().getString("city"), "Mumbai");
+		Assert.assertEquals(response.jsonPath().getString("status"), "Employee Created Successfully");
+	}
 }
