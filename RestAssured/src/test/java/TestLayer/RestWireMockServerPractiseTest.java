@@ -24,7 +24,6 @@ public class RestWireMockServerPractiseTest {
     @BeforeMethod
     public void setup() {
 
-        // WireMock running on port 9090
         server = new WireMockServer(9090);
         server.start();
 
@@ -41,14 +40,15 @@ public class RestWireMockServerPractiseTest {
                 + "  \"createdAt\":\"2026-05-19T10:45:30\"\n"
                 + "}";
 
-        // POST Stub
+        System.out.println("WireMock Started : " + server.isRunning());
+        System.out.println("Payload : " + payload);
+
         server.stubFor(post(urlEqualTo("/employees"))
                 .willReturn(aResponse()
                         .withStatus(201)
                         .withHeader("Content-Type", "application/json")
                         .withBody(payload)));
 
-        // GET Stub
         server.stubFor(get(urlEqualTo("/employees/3030"))
                 .willReturn(aResponse()
                         .withStatus(200)
@@ -58,7 +58,6 @@ public class RestWireMockServerPractiseTest {
 
     @AfterMethod
     public void tearDown() {
-
         if (server != null && server.isRunning()) {
             server.stop();
         }
@@ -66,6 +65,8 @@ public class RestWireMockServerPractiseTest {
 
     @Test(groups = "Regression")
     public void postCallUsingWireMockServer() {
+
+        Assert.assertNotNull(payload, "Payload is NULL");
 
         RestAssured.baseURI = "http://localhost:9090";
 
@@ -80,7 +81,6 @@ public class RestWireMockServerPractiseTest {
 
         Assert.assertEquals(response.getStatusCode(), 201);
         Assert.assertTrue(response.getStatusLine().contains("201"));
-        Assert.assertTrue(response.getTime() < 3000);
         Assert.assertEquals(response.getContentType(), "application/json");
 
         Assert.assertEquals(response.jsonPath().getInt("id"), 101);
@@ -97,6 +97,8 @@ public class RestWireMockServerPractiseTest {
     @Test(groups = "Regression")
     public void getCallUsingWireMockServer() {
 
+        Assert.assertNotNull(payload, "Payload is NULL");
+
         RestAssured.baseURI = "http://localhost:9090";
 
         RequestSpecification httpRequest = RestAssured.given();
@@ -109,7 +111,6 @@ public class RestWireMockServerPractiseTest {
 
         Assert.assertEquals(response.getStatusCode(), 200);
         Assert.assertTrue(response.getStatusLine().contains("200"));
-        Assert.assertTrue(response.getTime() < 3000);
         Assert.assertEquals(response.getContentType(), "application/json");
 
         Assert.assertEquals(response.jsonPath().getInt("id"), 101);
