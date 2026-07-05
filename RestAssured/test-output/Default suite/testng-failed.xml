@@ -3,12 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Selenium_Practise.LaunchBrowser_syntax">
+      <class name="TestLayer.RestWireMockServerPractiseTest">
         <methods>
-          <include name="launchApp"/>
+          <include name="setup"/>
+          <include name="getCallUsingWireMockServer"/>
           <include name="tearDown"/>
         </methods>
-      </class> <!-- Selenium_Practise.LaunchBrowser_syntax -->
+      </class> <!-- TestLayer.RestWireMockServerPractiseTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

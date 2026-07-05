@@ -28,7 +28,7 @@ public class RestWireMockServerPractiseTest {
 		server.start();
 
 		payload = "{\n" + "  \"id\": 101,\n" + "  \"firstName\": \"Sudip\",\n" + "  \"lastName\": \"Chothe\",\n"
-				+ "  \"email\": \"sudip.chothe@gmail.com\",\n" + "  \"mobile\": \"98765843210\",\n"
+				+ "  \"email\": \"sudip.chothe@gmail.com\",\n" + "  \"mobile\": \"9028824680\",\n"
 				+ "  \"department\": \"QA Automation\",\n" + "  \"salary\": 85000,\n" + "  \"city\": \"Mumbai\",\n"
 				+ "  \"status\": \"Employee Created Successfully\",\n" + "  \"createdAt\": \"2026-05-19T10:45:30\"\n"
 				+ "}";
@@ -69,7 +69,7 @@ public class RestWireMockServerPractiseTest {
 		Assert.assertEquals(response.jsonPath().getString("firstName"), "Sudip");
 		Assert.assertEquals(response.jsonPath().getString("lastName"), "Chothe");
 		Assert.assertEquals(response.jsonPath().getString("email"), "sudip.chothe@gmail.com");
-		Assert.assertEquals(response.jsonPath().getString("mobile"), "98765843210");
+		Assert.assertEquals(response.jsonPath().getString("mobile"), "9028824680");
 		Assert.assertEquals(response.jsonPath().getString("department"), "QA Automation");
 		Assert.assertEquals(response.jsonPath().getInt("salary"), 85000);
 		Assert.assertEquals(response.jsonPath().getString("city"), "Mumbai");
@@ -98,7 +98,7 @@ public class RestWireMockServerPractiseTest {
 		Assert.assertEquals(response.jsonPath().getString("firstName"), "Sudip");
 		Assert.assertEquals(response.jsonPath().getString("lastName"), "Chothe");
 		Assert.assertEquals(response.jsonPath().getString("email"), "sudip.chothe@gmail.com");
-		Assert.assertEquals(response.jsonPath().getString("mobile"), "9876543210");
+		Assert.assertEquals(response.jsonPath().getString("mobile"), "9028824680");
 		Assert.assertEquals(response.jsonPath().getString("department"), "QA Automation");
 		Assert.assertEquals(response.jsonPath().getInt("salary"), 85000);
 		Assert.assertEquals(response.jsonPath().getString("city"), "Mumbai");
