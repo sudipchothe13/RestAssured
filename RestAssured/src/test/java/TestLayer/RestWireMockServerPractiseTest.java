@@ -79,7 +79,7 @@ public class RestWireMockServerPractiseTest {
 	@Test(groups = "Regression")
 	public void getCallUsingWireMockServer() {
 
-		RestAssured.baseURI = "http://localhost:3000";
+		RestAssured.baseURI = "http://localhost:9090";
 
 		RequestSpecification httpRequest = RestAssured.given();
 
