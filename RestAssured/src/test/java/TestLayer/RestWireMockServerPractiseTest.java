@@ -85,7 +85,7 @@ public class RestWireMockServerPractiseTest {
 
 		httpRequest.header("Content-Type", "application/json");
 
-		Response response = httpRequest.get("/employees/3030");
+		Response response = httpRequest.get("/employees/");
 
 		response.prettyPrint();
 
