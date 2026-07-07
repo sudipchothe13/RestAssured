@@ -4,12 +4,12 @@ import org.testng.annotations.Test;
 
 public class JenkinsTest {
 	
-	@Test (groups="J")
+	@Test (groups="Regression")
 	public void m1() {
 		System.out.println("m1");
 	}
 	
-	@Test (groups="J")
+	@Test (groups="Regression")
 	public void m2() {
 		System.out.println("m2");
 	}
