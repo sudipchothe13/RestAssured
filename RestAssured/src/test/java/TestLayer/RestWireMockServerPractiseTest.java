@@ -63,7 +63,7 @@ public class RestWireMockServerPractiseTest {
         }
     }
 
-    @Test(groups = "Regression")
+    @Test(groups = "Sanity")
     public void postCallUsingWireMockServer() {
 
         Assert.assertNotNull(payload, "Payload is NULL");
@@ -94,7 +94,7 @@ public class RestWireMockServerPractiseTest {
         Assert.assertEquals(response.jsonPath().getString("status"), "Employee Created Successfully");
     }
 
-    @Test(groups = "Regression")
+    @Test(groups = "Sanity")
     public void getCallUsingWireMockServer() {
 
         Assert.assertNotNull(payload, "Payload is NULL");
